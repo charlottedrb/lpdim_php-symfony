@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Models;
+
+use \PDO;
+use \Exception;
+
+
 final class Database
 {
     private static ?self $instance = null;

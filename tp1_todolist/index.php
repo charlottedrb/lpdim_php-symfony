@@ -1,18 +1,19 @@
 <?php
 
-
-require("src/Models/Database.php");
-require("src/Models/TaskRepository.php");
+require __DIR__ . "/vendor/autoload.php";
+use App\Models\Database;
+use App\Models\TaskRepository;
 
 define("DATABASE_FILE", "./data.db");
 $tasks = [];
-if (!file_exists(DATABASE_FILE)) {
-    $database = Database::initialize(DATABASE_FILE);
-    $taskRepository = new TaskRepository();
-    $taskRepository->initialize();
+try {
+    Database::initialize(DATABASE_FILE);
+} catch (Exception $e) {
+    echo "Cannot init the DB.";
 }
-$database = Database::getInstance();
+
 $taskRepository = new TaskRepository();
+$taskRepository->initialize();
 ?>
 <html lang="fr">
 <head>
@@ -90,7 +91,7 @@ if (isset($_GET["action"])) {
         case "uncheck":
             if (isset($_GET["id"])) {
                 $id = $_GET["id"];
-                $taskRepository->update($_GET["id"], false);
+                $taskRepository->update($_GET["id"]);
             }
             break;
         case "check":
@@ -109,7 +110,7 @@ if (isset($_GET["action"])) {
             if (isset($_GET["name"])) {
                 $name = $_GET["name"];
                 $name = addslashes($name);
-                $taskRepository->add($_GET["name"]);
+                $taskRepository->add($name);
             }
             break;
         default:
@@ -118,13 +119,9 @@ if (isset($_GET["action"])) {
     }
 }
 
-$query = $taskRepository->getAll();
-if (!$query)
-    die("Impossible to execute query.");
-
-while ($row = $query->fetchArray(SQLITE3_ASSOC)) {
-    $tasks[] = $row;
-}
+$tasks = $taskRepository->getAll();
+if (empty($tasks))
+    var_dump("Il n'y a pas de tâches.");
 ?>
 <table>
     <tr>
@@ -142,7 +139,10 @@ while ($row = $query->fetchArray(SQLITE3_ASSOC)) {
             echo "<button class='btn-no-style' type='submit' name='action' value='check'><i class='checked-icon-grey fas fa-check'></i></button>";
         }
         echo "</td><td class='" . ($task["checked"] ? 'checked' : '') . "'>";
-        echo $task["name"];
+        // Gestion des espaces, guillemets simples et back-slash.
+        $search = array("_", "-", "\\");
+        $toReplace = array(" ", "'", "");
+        echo str_replace($search, $toReplace, $task["name"]);
         echo "</td><td>";
 
         echo "<button class='btn-no-style' type='submit' name='action' value='delete'><i class='trash-icon fas fa-trash'></i></button>";
