@@ -6,3 +6,8 @@ tp1_todolist/vendor
 tp2_framework/.idea
 tp2_framework/composer.lock
 tp2_framework/vendor
+
+tp2_game/.idea
+tp2_game/composer.lock
+tp2_game/vendor
+tp2_game/db.sqlite
