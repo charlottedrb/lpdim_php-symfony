@@ -14,22 +14,14 @@ class GameController extends AbstractController
 
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        /**
-         * @todo lister les jeux de la base
-         */
         $games = $entityManager->getRepository(Game::class)->findAll();
         return $this->render("game/index", ["games" => $games]);
-
     }
 
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = FakeData::games(1)[0];
         if ($request->getMethod() == Request::METHOD_POST) {
-            /**
-             * @todo enregistrer l'objet
-             */
-
             $game = new Game();
             var_dump($request->get('name'));
             $game->setName($request->get('name'));
@@ -51,14 +43,15 @@ class GameController extends AbstractController
     }
 
 
-    public function edit($id, Request $request): Response
+    public function edit($id, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $game = FakeData::games(1)[0];
-
+        $game = $entityManager->getRepository(Game::class)->findOneBy(["id" => $id]);
         if ($request->getMethod() == Request::METHOD_POST) {
-            /**
-             * @todo enregistrer l'objet
-             */
+            $game->setName($request->get('name'));
+            $game->setImage($request->get('image'));
+
+            $entityManager->persist($game);
+            $entityManager->flush();
             return $this->redirectTo("/game");
         }
         return $this->render("game/form", ["game" => $game]);
