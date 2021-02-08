@@ -28,3 +28,30 @@
     </div>
 </div>
 <?php endforeach;?>
+<?php foreach ($gamesDB as $g): ?>
+    gngng
+    <div class="flex bg-white md:h-60 h-24	 dark:bg-gray-800 rounded-lg shadow mb-5">
+        <div class="flex-none w-24 md:w-60  relative">
+            <img src="<?= $g["image"]; ?>" class="absolute rounded-lg inset-0 w-full h-full object-cover"/>
+        </div>
+        <div class="flex-auto p-6">
+            <div class="flex flex-wrap">
+                <h1 class="flex-auto text-xl font-semibold dark:text-gray-50">
+                    <?= $g["name"]; ?>
+                </h1>
+                <div class="text-xl font-semibold text-gray-500 dark:text-gray-300">
+                    <a href="/game/show?id=<?= $g["id"]; ?>">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="/game/edit?id=<?= $g["id"]; ?>">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="/game/delete?id=<?= $g["id"]; ?>"
+                       onclick="return confirm('Are you sure you want to delete it?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach;?>

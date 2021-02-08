@@ -28,7 +28,7 @@ class Player
 
     /**
      * @var Game
-     * @ORM\OneToOne(targetEntity="Game", mappedBy="player")
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="player")
      */
     private $game;
 
@@ -86,5 +86,21 @@ class Player
     public function getGame(): Game
     {
         return $this->game;
+    }
+
+    /**
+     * @param Score $score
+     */
+    public function setScore(Score $score): void
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * @return Score
+     */
+    public function getScore(): Score
+    {
+        return $this->score;
     }
 }

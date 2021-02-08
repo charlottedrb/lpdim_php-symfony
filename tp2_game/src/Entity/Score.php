@@ -2,6 +2,7 @@
 
 
 namespace App\Entity;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,6 +40,7 @@ class Score
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="score")
      */
     private $game;
+
 
 
     /**

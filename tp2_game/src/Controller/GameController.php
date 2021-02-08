@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Game;
 use App\FakeData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,19 +17,29 @@ class GameController extends AbstractController
         /**
          * @todo lister les jeux de la base
          */
-        $games = FakeData::games(15);
-        return $this->render("game/index", ["games" => $games]);
+        $gamesFromDB = $entityManager->getRepository(Game::class)->findAll();
+        //dd($gamesFromDB);
+        $games = FakeData::games(2);
+        return $this->render("game/index", ["games" => $games, "gamesDB" => $gamesFromDB]);
 
     }
 
-    public function add(Request $request): Response
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = FakeData::games(1)[0];
-
         if ($request->getMethod() == Request::METHOD_POST) {
             /**
              * @todo enregistrer l'objet
              */
+
+            $game = new Game();
+            var_dump($request->get('name'));
+            $game->setName($request->get('name'));
+            $game->setImage($request->get('image'));
+
+            $entityManager->persist($game);
+            $entityManager->flush();
+
             return $this->redirectTo("/game");
         }
         return $this->render("game/form", ["game" => $game]);

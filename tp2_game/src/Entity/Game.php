@@ -29,7 +29,7 @@ class Game {
 
     /**
      * @var Player
-     * @ORM\OneToOne(targetEntity="Player", inversedBy="game")
+     * @ORM\ManyToMany(targetEntity="Player", inversedBy="game")
      */
     private $player;
 
