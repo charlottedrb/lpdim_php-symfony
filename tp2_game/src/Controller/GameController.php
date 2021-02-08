@@ -17,10 +17,8 @@ class GameController extends AbstractController
         /**
          * @todo lister les jeux de la base
          */
-        $gamesFromDB = $entityManager->getRepository(Game::class)->findAll();
-        //dd($gamesFromDB);
-        $games = FakeData::games(2);
-        return $this->render("game/index", ["games" => $games, "gamesDB" => $gamesFromDB]);
+        $games = $entityManager->getRepository(Game::class)->findAll();
+        return $this->render("game/index", ["games" => $games]);
 
     }
 
@@ -46,9 +44,9 @@ class GameController extends AbstractController
     }
 
 
-    public function show($id): Response
+    public function show($id, EntityManagerInterface $entityManager): Response
     {
-        $game = FakeData::games(1)[0];
+        $game = $entityManager->getRepository(Game::class)->findOneBy(["id" => $id]);
         return $this->render("game/show", ["game" => $game]);
     }
 
