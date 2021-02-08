@@ -40,6 +40,15 @@ class Player
 
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
      * @param mixed $username
      */
     public function setUsername($username){

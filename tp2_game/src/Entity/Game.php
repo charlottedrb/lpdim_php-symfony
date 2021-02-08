@@ -41,6 +41,14 @@ class Game {
 
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @param mixed $name
      */
     public function setName($name): void
