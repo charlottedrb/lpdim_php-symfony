@@ -15,6 +15,7 @@ abstract class AbstractController
         ob_end_clean();
         return new Response($content);
     }
+
     public function redirectTo($path):Response{
         return new RedirectResponse($path);
     }

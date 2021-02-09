@@ -12,8 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 class GameController extends AbstractController
 {
 
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
+        //$fake = FakeData::games(2);
         $games = $entityManager->getRepository(Game::class)->findAll();
         return $this->render("game/index", ["games" => $games]);
     }
@@ -23,10 +24,9 @@ class GameController extends AbstractController
         $game = FakeData::games(1)[0];
         if ($request->getMethod() == Request::METHOD_POST) {
             $game = new Game();
-            var_dump($request->get('name'));
             $game->setName($request->get('name'));
             $game->setImage($request->get('image'));
-
+            //dd($game);
             $entityManager->persist($game);
             $entityManager->flush();
 
@@ -59,11 +59,11 @@ class GameController extends AbstractController
 
     }
 
-    public function delete($id): Response
+    public function delete($id, EntityManagerInterface $entityManager): Response
     {
-        /**
-         * @todo supprimer l'objet
-         */
+        $game = $entityManager->getRepository(Game::class)->findOneBy(['id' => $id]);
+        $entityManager->remove($game);
+        $entityManager->flush();
         return $this->redirectTo("/game");
 
     }

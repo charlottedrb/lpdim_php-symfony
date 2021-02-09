@@ -2,6 +2,7 @@
 
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,10 +29,10 @@ class Game {
 
 
     /**
-     * @var Player
-     * @ORM\ManyToMany(targetEntity="Player", inversedBy="game")
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Player", inversedBy="games")
      */
-    private $player;
+    private $players;
 
     /**
      * @var Score

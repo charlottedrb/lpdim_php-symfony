@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,16 +28,16 @@ class Player
     private $email;
 
     /**
-     * @var Game
-     * @ORM\ManyToMany(targetEntity="Game", mappedBy="player")
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="players")
      */
-    private $game;
+    private $games;
 
     /**
-     * @var Score
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Score", mappedBy="player")
      */
-    private $score;
+    private $scores;
 
 
     /**
@@ -82,34 +83,34 @@ class Player
 
 
     /**
-     * @param Game $game
+     * @param ArrayCollection $games
      */
-    public function setGame(Game $game): void
+    public function setGames(ArrayCollection $games): void
     {
-        $this->game = $game;
+        $this->games = $games;
     }
 
     /**
-     * @return Game
+     * @return ArrayCollection
      */
-    public function getGame(): Game
+    public function getGames(): ArrayCollection
     {
-        return $this->game;
+        return $this->games;
     }
 
     /**
-     * @param Score $score
+     * @param ArrayCollection $scores
      */
-    public function setScore(Score $score): void
+    public function setScore(Score $scores): void
     {
-        $this->score = $score;
+        $this->scores = $scores;
     }
 
     /**
-     * @return Score
+     * @return ArrayCollection
      */
-    public function getScore(): Score
+    public function getScores(): ArrayCollection
     {
-        return $this->score;
+        return $this->scores;
     }
 }
