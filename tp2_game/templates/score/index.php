@@ -48,7 +48,7 @@
                 Add score
             </div>
             <div>
-                <?php if(isset($err)): echo "<div class='text-red-600'>" . $err . "<a class='text-red-600 underline' href='/score'>Cliquez ici pour réessayer.</a></div>"; endif;?>
+                <?php if(isset($err)): echo "<div class='text-red-600'>" . $err . " <a class='text-red-600 underline' href='/score'>Cliquez ici pour réessayer.</a></div>"; endif;?>
                 <div class="flex flex-col mb-2">
                     <div class="flex relative ">
                         <select class="block w-full text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
