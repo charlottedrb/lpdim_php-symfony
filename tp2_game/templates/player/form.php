@@ -3,16 +3,18 @@
         <div class=" relative ">
             <input type="string"
                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                   id="name" aria-describedby="name" placeholder="Name" value="<?= $player["email"]; ?>">
+                   id="name" aria-describedby="name" placeholder="Email"
+                   name="email"
+                   value="<?php if(!is_array($player)): echo $player->getEmail(); else: echo ""; endif; ?>">
         </div>
     </div>
     <div class="flex flex-col mb-2">
         <div class=" relative ">
             <input type="string"
                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-
-                   id="image" aria-describedby="image" placeholder="URL"
-                   value="<?= $player["username"]; ?>">
+                   id="image" aria-describedby="image" placeholder="Username"
+                   name="username"
+                   value="<?php if(!is_array($player)): echo $player->getUsername(); else: echo ""; endif; ?>">
         </div>
     </div>
 

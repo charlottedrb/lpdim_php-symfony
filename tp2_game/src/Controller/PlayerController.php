@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Game;
+use App\Entity\Player;
 use App\FakeData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,43 +15,48 @@ class PlayerController extends AbstractController
 
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        /**
-         * @todo lister les joueurs
-         */
-        $players = FakeData::players(25);
+
+        //$players = FakeData::players(25);
+        $players = $entityManager->getRepository(Player::class)->findAll();
         return $this->render("player/index", ["players" => $players]);
 
     }
 
-    public function add(Request $request): Response
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $player = FakeData::players(1)[0];
 
         if ($request->getMethod() == Request::METHOD_POST) {
-            /**
-             * @todo enregistrer l'objet
-             */
+            $player = new Player();
+            $player->setUsername($request->get('username'));
+            $player->setEmail($request->get('email'));
+
+            $entityManager->persist($player);
+            $entityManager->flush();
             return $this->redirectTo("/player");
         }
         return $this->render("player/form", ["player" => $player]);
     }
 
 
-    public function show($id): Response
+    public function show($id, EntityManagerInterface $entityManager): Response
     {
-        $player = FakeData::players(1)[0];
+        //$player = FakeData::players(1)[0];
+        $player = $entityManager->getRepository(Player::class)->findOneBy(['id' => $id]);
         return $this->render("player/show", ["player" => $player, "availableGames" => FakeData::games()]);
     }
 
 
-    public function edit($id, Request $request): Response
+    public function edit($id, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $player = FakeData::players(1)[0];
-
+        //$player = FakeData::players(1)[0];
+        $player = $entityManager->getRepository(Player::class)->findOneBy(['id' => $id]);
         if ($request->getMethod() == Request::METHOD_POST) {
-            /**
-             * @todo enregistrer l'objet
-             */
+            $player->setUsername($request->get('username'));
+            $player->setEmail($request->get('email'));
+
+            $entityManager->persist($player);
+            $entityManager->flush();
             return $this->redirectTo("/player");
         }
         return $this->render("player/form", ["player" => $player]);
@@ -57,11 +64,11 @@ class PlayerController extends AbstractController
 
     }
 
-    public function delete($id): Response
+    public function delete($id, EntityManagerInterface $entityManager): Response
     {
-        /**
-         * @todo supprimer l'objet
-         */
+        $player = $entityManager->getRepository(Player::class)->findOneBy(['id' => $id]);
+        $entityManager->remove($player);
+        $entityManager->flush();
         return $this->redirectTo("/player");
 
     }

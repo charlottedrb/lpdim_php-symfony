@@ -26,7 +26,7 @@ class GameController extends AbstractController
             $game = new Game();
             $game->setName($request->get('name'));
             $game->setImage($request->get('image'));
-            //dd($game);
+
             $entityManager->persist($game);
             $entityManager->flush();
 

@@ -42,6 +42,14 @@ class Score
     private $game;
 
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     /**
      * @param mixed $score
@@ -88,7 +96,7 @@ class Score
     /**
      * @return Player
      */
-    public function getPlayer(Player $player) : Player {
+    public function getPlayer() : Player {
         return $this->player;
     }
 
@@ -100,7 +108,7 @@ class Score
         $this->game = $game;
     }
 
-    public function getGame(Game $game) : Game {
+    public function getGame() : Game {
         return $this->game;
     }
 }
