@@ -58,7 +58,6 @@ class ScoreController extends AbstractController
         $entityManager->remove($score);
         $entityManager->flush();
         return $this->redirectTo("/score");
-
     }
 
 }

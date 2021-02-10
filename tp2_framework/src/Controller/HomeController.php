@@ -7,11 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends AbstractController{
 
     public function index(Request $request): Response {
-        return $this->render(
-            "home/index",
-            [
-                "name"=>$request->query->get('name')
-            ]
-        );
+        if($request->getMethod() == Request::METHOD_POST){
+            return $this->render(
+                "home/index",
+                [
+                    "name" => $request->get('name')
+                ]
+            );
+        }
+        return $this->render("home/index");
     }
 }
