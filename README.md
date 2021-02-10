@@ -12,7 +12,7 @@ Découverte de l'architecture Symfony (entre autre).
 
 [Sujet](https://course.larget.fr/dim/php/tp/tp2/1-httpfoundation/)
 
-## TP 1 - Game Framework
+## TP 2.2 - Game Framework
 
 Utilise Doctrine et l'architecture Symfony.
 
