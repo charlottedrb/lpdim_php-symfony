@@ -30,10 +30,10 @@ class Game {
 
 
     /**
-     * @var Collection|Player
+     * @var Player
      * @ORM\ManyToMany(targetEntity="Player", inversedBy="games")
      */
-    private $players;
+    private $player;
 
     /**
      * @var Collection|Score
@@ -44,7 +44,6 @@ class Game {
 
     public function __construct()
     {
-        $this->players = new ArrayCollection();
         $this->scores = new ArrayCollection();
     }
 
@@ -98,13 +97,13 @@ class Game {
      */
     public function setPlayer(Player $player): self
     {
-        $this->players = $player;
+        $this->player = $player;
         return $this;
     }
 
-    public function getPlayer() : Collection
+    public function getPlayer() : Player
     {
-        return $this->players;
+        return $this->player;
     }
 
     /**
