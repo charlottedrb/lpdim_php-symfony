@@ -1,1 +1,37 @@
-<h1>Scoring App.</h1>
+<h1 class="text-5xl">Best Games</h1>
+
+<div class="grid grid-cols-5 gap-4">
+    <?php foreach ($players as $player): ?>
+        <div class="shadow-lg rounded float-left bg-white dark:bg-gray-800 p-4">
+            <div class="flex-row gap-4 flex justify-center items-center">
+                <div class="flex-shrink-0">
+
+                </div>
+                <div class=" flex flex-col">
+                    <span class="text-gray-600 dark:text-white text-lg font-medium">
+                        <?= $player->getUsername(); ?>
+                    </span>
+                    <span class="text-gray-400 text-xs">
+                        <?= $player->getEmail(); ?>
+                    </span>
+                    <span class="text-gray-400 text-xs">
+
+                        <a class="hover:text-gray-600" href="/player/show?id=<?= $player->getId(); ?>">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a class="hover:text-gray-600" href="/player/edit?id=<?= $player->getId(); ?>">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="hover:text-gray-600" href="/player/delete?id=<?= $player->getId(); ?>"
+                           onclick="return confirm('Are you sure you want to delete it?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+    <?php endforeach; ?>
+</div>
+

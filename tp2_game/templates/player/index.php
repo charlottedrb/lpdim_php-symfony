@@ -1,6 +1,6 @@
-<h1 class="text-5xl">Player </h1>
+<h1 class="text-5xl inline-block mb-10 ">Player</h1>
 <a href="/player/add"
-   class="mb-10 px-4 py-2 inline-flex hover:bg-pink-500 bg-pink-600 text-white rounded-full justify-center items-center"><i
+   class="float-right px-4 py-2 inline-block hover:bg-pink-500 bg-pink-600 text-white rounded-full justify-center items-center">Add <i
             class="fas fa-plus"></i>
 </a>
 

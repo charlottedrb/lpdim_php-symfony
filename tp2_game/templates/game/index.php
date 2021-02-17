@@ -1,5 +1,5 @@
-<h1 class="text-5xl">Games </h1>
-<a  href="/game/add" class="mb-10 px-4 py-2 inline-flex hover:bg-pink-500 bg-pink-600 text-white rounded-full justify-center items-center"><i class="fas fa-plus"></i>
+<h1 class="text-5xl inline-block mb-10">Games </h1>
+<a  href="/game/add" class="float-right px-4 py-2 inline-block hover:bg-pink-500 bg-pink-600 text-white rounded-full justify-center items-center">Add <i class="fas fa-plus"></i>
 </a>
 <?php foreach($games as $game): ?>
     <div class="flex bg-white md:h-60 h-24	 dark:bg-gray-800 rounded-lg shadow mb-5">
