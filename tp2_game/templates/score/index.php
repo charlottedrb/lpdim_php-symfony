@@ -42,7 +42,7 @@
     <?php else: echo "<div class='col-span-2 p-4 bg-white shadow rounded-lg w-full text-center '>No scores available.</div>"; endif; ?>
 
     <div>
-        <form method="GET" action="score/add"
+        <form method="POST" action="score/add"
               class="mb-6 flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
             <div class="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
                 Add score
