@@ -30,7 +30,7 @@ class Player
 
     /**
      * @var Collection|Game
-     * @ORM\ManyToMany(targetEntity="Game", mappedBy="players")
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="players")
      */
     private $games;
 
@@ -43,7 +43,6 @@ class Player
 
     public function __construct()
     {
-        $this->games = new ArrayCollection();
         $this->scores = new ArrayCollection();
     }
 
@@ -96,7 +95,7 @@ class Player
     /**
      * @param Game $games
      */
-    public function setGames(Game $game): self
+    public function setGame(Game $game): self
     {
         $this->games = $game;
         return $this;

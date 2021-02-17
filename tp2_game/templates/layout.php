@@ -8,16 +8,16 @@
 </head>
 <body class="flex flex-col min-h-screen">
 <div>
-    <nav class="bg-gray-800 shadow">
+    <nav class="bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 shadow">
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="w-full justify-between flex items-center">
                     <a class="flex-shrink-0 text-white" href="/">My App</a>
                     <div class="md:block">
-                        <a class="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/">Home</a>
-                        <a class="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/game">Games</a>
-                        <a class="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/player">Players</a>
-                        <a class="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/score">Scores</a>
+                        <a class="text-white  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/">Home</a>
+                        <a class="text-white  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/game">Games</a>
+                        <a class="text-white  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/player">Players</a>
+                        <a class="text-white  hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/score">Scores</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
     </div>
 </main>
 
-<footer class="bg-gray-800 w-full py-8">
+<footer class="bg-black w-full py-8">
     <div class="max-w-screen-xl mx-auto px-4">
         <ul class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between">
             <li class="my-2">

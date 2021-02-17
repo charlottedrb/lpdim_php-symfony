@@ -31,7 +31,7 @@ class Game {
 
     /**
      * @var Player
-     * @ORM\ManyToMany(targetEntity="Player", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="Player", inversedBy="games")
      */
     private $player;
 
@@ -46,7 +46,6 @@ class Game {
     {
         $this->scores = new ArrayCollection();
     }
-
 
     /**
      * @return mixed
@@ -91,6 +90,7 @@ class Game {
     {
         return $this->image;
     }
+
 
     /**
      * @param Player $player

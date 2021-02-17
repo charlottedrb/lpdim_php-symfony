@@ -1,4 +1,4 @@
-
+<?php //TODO : mettre en page ?>
 <div class="flex bg-white md:h-min-22 h-min-20	 dark:bg-gray-800 rounded-lg shadow mb-5 px-10 py-4">
     <h1 class="text-2xl block">#<?= $player->getId(); ?> <?= $player->getUsername(); ?></h1>
 
