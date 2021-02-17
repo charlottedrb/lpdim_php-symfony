@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,16 +29,23 @@ class Player
     private $email;
 
     /**
-     * @var ArrayCollection
+     * @var Collection|Game
      * @ORM\ManyToMany(targetEntity="Game", mappedBy="players")
      */
     private $games;
 
     /**
-     * @var ArrayCollection
+     * @var Collection|Score
      * @ORM\OneToMany(targetEntity="Score", mappedBy="player")
      */
     private $scores;
+
+
+    public function __construct()
+    {
+        $this->games = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+    }
 
 
     /**
@@ -52,8 +60,10 @@ class Player
     /**
      * @param mixed $username
      */
-    public function setUsername($username){
+    public function setUsername($username) : self
+    {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -68,9 +78,10 @@ class Player
     /**
      * @param mixed $email
      */
-    public function setEmail($email): void
+    public function setEmail($email): self
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -83,33 +94,31 @@ class Player
 
 
     /**
-     * @param ArrayCollection $games
+     * @param Game $games
      */
-    public function setGames(ArrayCollection $games): void
+    public function setGames(Game $game): self
     {
-        $this->games = $games;
+        $this->games = $game;
+        return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getGames(): ArrayCollection
+
+    public function getGames(): Collection
     {
         return $this->games;
     }
 
     /**
-     * @param ArrayCollection $scores
+     * @param Score $scores
      */
-    public function setScore(Score $scores): void
+    public function setScore(Score $score): self
     {
-        $this->scores = $scores;
+        $this->scores = $score;
+        return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getScores(): ArrayCollection
+
+    public function getScores(): Collection
     {
         return $this->scores;
     }

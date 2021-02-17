@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,16 +30,23 @@ class Game {
 
 
     /**
-     * @var ArrayCollection
+     * @var Collection|Player
      * @ORM\ManyToMany(targetEntity="Player", inversedBy="games")
      */
     private $players;
 
     /**
-     * @var Score
+     * @var Collection|Score
      * @ORM\OneToMany(targetEntity="Score", mappedBy="game")
      */
-    private $score;
+    private $scores;
+
+
+    public function __construct()
+    {
+        $this->players = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+    }
 
 
     /**
@@ -52,9 +60,10 @@ class Game {
     /**
      * @param mixed $name
      */
-    public function setName($name): void
+    public function setName($name): self
     {
         $this->name = $name;
+        return $this;
     }
 
 
@@ -70,9 +79,10 @@ class Game {
     /**
      * @param mixed $image
      */
-    public function setImage($image): void
+    public function setImage($image): self
     {
         $this->image = $image;
+        return $this;
     }
 
     /**
@@ -86,28 +96,28 @@ class Game {
     /**
      * @param Player $player
      */
-    public function setPlayer(Player $player): void
+    public function setPlayer(Player $player): self
     {
-        $this->player = $player;
+        $this->players = $player;
+        return $this;
     }
 
-    public function getPlayer() : Player {
-        return $this->player;
+    public function getPlayer() : Collection
+    {
+        return $this->players;
     }
 
     /**
      * @param Score $score
      */
-    public function setScore(Score $score): void
+    public function setScore(Score $score): self
     {
-        $this->score = $score;
+        $this->scores = $score;
+        return $this;
     }
 
-    /**
-     * @return Score
-     */
-    public function getScore(): Score
+    public function getScores(): Collection
     {
-        return $this->score;
+        return $this->scores;
     }
 }

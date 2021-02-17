@@ -8,9 +8,6 @@
     <?php foreach ($players as $player): ?>
         <div class="shadow-lg rounded float-left bg-white dark:bg-gray-800 p-4">
             <div class="flex-row gap-4 flex justify-center items-center">
-                <div class="flex-shrink-0">
-
-                </div>
                 <div class=" flex flex-col">
                     <span class="text-gray-600 dark:text-white text-lg font-medium">
                         <?= $player->getUsername(); ?>

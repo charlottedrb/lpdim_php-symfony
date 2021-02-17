@@ -31,13 +31,13 @@ class Score
 
     /**
      * @var Player
-     * @ORM\ManyToOne(targetEntity="Player", inversedBy="score")
+     * @ORM\ManyToOne(targetEntity="Player", inversedBy="scores")
      */
     private $player;
 
     /**
      * @var Game
-     * @ORM\ManyToOne(targetEntity="Game", inversedBy="score")
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="scores")
      */
     private $game;
 
