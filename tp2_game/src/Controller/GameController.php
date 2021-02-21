@@ -22,7 +22,7 @@ class GameController extends AbstractController
 
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $game = FakeData::games(1)[0];
+        $game = null;
         $players = $entityManager->getRepository(Player::class)->findAll();
         if ($request->getMethod() == Request::METHOD_POST) {
             $game = new Game();

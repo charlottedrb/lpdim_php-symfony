@@ -24,8 +24,7 @@ class PlayerController extends AbstractController
 
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $player = FakeData::players(1)[0];
-
+        $player = null;
         if ($request->getMethod() == Request::METHOD_POST) {
             $player = new Player();
             $player->setUsername($request->get('username'));
@@ -49,7 +48,6 @@ class PlayerController extends AbstractController
 
     public function edit($id, Request $request, EntityManagerInterface $entityManager): Response
     {
-        //$player = FakeData::players(1)[0];
         $player = $entityManager->getRepository(Player::class)->findOneBy(['id' => $id]);
         if ($request->getMethod() == Request::METHOD_POST) {
             $player->setUsername($request->get('username'));

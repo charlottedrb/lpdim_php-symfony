@@ -8,7 +8,7 @@
                    class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                    id="name" aria-describedby="name" placeholder="Name"
                    name="name"
-                   value="{% if game is iterable %} {{ game->getName() }} {% endif %}">
+                    {% if game is defined and game is not null %} value="{{ game.name }}" {% endif %}>
         </div>
     </div>
     <div class="flex flex-col mb-2">
@@ -17,14 +17,14 @@
                    class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                    id="image" aria-describedby="image" placeholder="URL"
                    name="image"
-                   value="{% if game is iterable %} {{ game->getImage() }} {% endif %}">
+                   {% if game is defined and game is not null %} value=" {{ game.image }}" {% endif %}>
         </div>
     </div>
     <div class="flex flex-col mb-2">
         <div class="relative">
             <select name="owner" class="rounded-lg border-transparent flex-1 border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                 {% for player in players %}
-                    <option class="" value="{{ player->getUsername() }}">{{ player->getUsername() }}</option>
+                    <option class="" value="{{ player.username }}">{{ player.username }}</option>
                 {% endfor %}
             </select>
         </div>
