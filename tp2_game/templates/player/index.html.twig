@@ -1,3 +1,6 @@
+{% extends "layout.html.twig" %}
+
+{% block body %}
 <h1 class="text-5xl inline-block mb-10 ">Player</h1>
 <a href="/player/add"
    class="float-right px-4 py-2 inline-block hover:bg-pink-500 bg-pink-600 text-white rounded-full justify-center items-center">Add <i
@@ -5,25 +8,25 @@
 </a>
 
 <div class="grid grid-cols-5 gap-4">
-    <?php foreach ($players as $player): ?>
+    {% for player in players %}
         <div class="shadow-lg rounded float-left bg-white dark:bg-gray-800 p-4">
             <div class="flex-row gap-4 flex justify-center items-center">
                 <div class=" flex flex-col">
                     <span class="text-gray-600 dark:text-white text-lg font-medium">
-                        <?= $player->getUsername(); ?>
+                        {{ player->getUsername() }}
                     </span>
                     <span class="text-gray-400 text-xs">
-                        <?= $player->getEmail(); ?>
+                        {{ player->getEmail() }}
                     </span>
                     <span class="text-gray-400 text-xs">
 
-                        <a class="hover:text-gray-600" href="/player/show?id=<?= $player->getId(); ?>">
+                        <a class="hover:text-gray-600" href="/player/show?id={{ player->getId() }}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a class="hover:text-gray-600" href="/player/edit?id=<?= $player->getId(); ?>">
+                        <a class="hover:text-gray-600" href="/player/edit?id={{ player->getId() }}">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a class="hover:text-gray-600" href="/player/delete?id=<?= $player->getId(); ?>"
+                        <a class="hover:text-gray-600" href="/player/delete?id={{ player->getId() }}"
                            onclick="return confirm('Are you sure you want to delete it?')">
                             <i class="fas fa-trash"></i>
                         </a>
@@ -32,7 +35,7 @@
                 </div>
             </div>
         </div>
-
-    <?php endforeach; ?>
+    {% endfor %}
 </div>
+{% endblock %}
 
