@@ -27,7 +27,7 @@ class ScoreController extends AbstractController
         $players = $entityManager->getRepository(Player::class)->findAll();
         $scores = $entityManager->getRepository(Score::class)->findAll();
 
-        return $this->render("score/index", ["scores" => $scores,
+        return $this->render("score/index.html.twig", ["scores" => $scores,
             "games" => $games, "players" => $players]);
     }
 
@@ -49,7 +49,7 @@ class ScoreController extends AbstractController
         }
 
         $scores = $entityManager->getRepository(Score::class)->findAll();
-        return $this->render("score/index", ["err" => "Il y a eu une erreur.", "scores" => $scores]);
+        return $this->render("score/index.html.twig", ["err" => "Il y a eu une erreur.", "scores" => $scores]);
     }
 
     public function delete($id, EntityManagerInterface $entityManager): Response

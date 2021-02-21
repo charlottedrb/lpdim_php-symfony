@@ -11,3 +11,4 @@ tp2_game/.idea
 tp2_game/composer.lock
 tp2_game/vendor
 tp2_game/db.sqlite
+tp2_game/var

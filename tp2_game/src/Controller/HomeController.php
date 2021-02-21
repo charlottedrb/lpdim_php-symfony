@@ -29,6 +29,6 @@ class HomeController extends AbstractController
         arsort($scores);
         $highestScores = array_slice($scores, 0, 3);
 
-        return $this->render("home/index", ["name" => $request->query->get('name'), "highestScores" => $highestScores]);
+        return $this->render("home/index.html.twig", ["name" => $request->query->get('name'), "highestScores" => $highestScores]);
     }
 }
