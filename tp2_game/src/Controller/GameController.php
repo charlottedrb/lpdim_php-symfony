@@ -5,14 +5,16 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Player;
-use App\FakeData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+#[Route("/games",name:"games")]
 class GameController extends AbstractController
 {
 
+    #[Route("", name:"game_index")]
     public function index(EntityManagerInterface $entityManager): Response
     {
         //$fake = FakeData::games(2);
@@ -20,6 +22,8 @@ class GameController extends AbstractController
         return $this->render("game/index.html.twig", ["games" => $games]);
     }
 
+
+    #[Route("/add", name:"game_add", methods: ['POST'])]
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = null;
@@ -38,6 +42,7 @@ class GameController extends AbstractController
     }
 
 
+    #[Route("/show/{id}", name:"game_show", methods: ['GET'])]
     public function show($id, EntityManagerInterface $entityManager): Response
     {
         $game = $entityManager->getRepository(Game::class)->findOneBy(["id" => $id]);
@@ -45,6 +50,7 @@ class GameController extends AbstractController
     }
 
 
+    #[Route("/edit/{id}", name:"game_edit", methods: ['POST, GET'])]
     public function edit($id, Request $request, EntityManagerInterface $entityManager): Response
     {
         $game = $entityManager->getRepository(Game::class)->findOneBy(["id" => $id]);
@@ -65,6 +71,8 @@ class GameController extends AbstractController
 
     }
 
+
+    #[Route("/delete/{id}",name:"game_delete")]
     public function delete($id, EntityManagerInterface $entityManager): Response
     {
         $game = $entityManager->getRepository(Game::class)->findOneBy(['id' => $id]);
