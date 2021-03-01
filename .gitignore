@@ -12,3 +12,21 @@ tp2_game/composer.lock
 tp2_game/vendor
 tp2_game/db.sqlite
 tp2_game/var
+
+###> symfony/framework-bundle ###
+tp3_blog/tp_blog/.env.local
+tp3_blog/tp_blog/.env.local.php
+tp3_blog/tp_blog/.env.*.local
+tp3_blog/tp_blog/config/secrets/prod/prod.decrypt.private.php
+tp3_blog/tp_blog/public/bundles/
+tp3_blog/tp_blog/var/
+tp3_blog/tp_blog/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+tp3_blog/tp_blog.phpunit
+tp3_blog/tp_blog.phpunit.result.cache
+tp3_blog/tp_blog/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+
