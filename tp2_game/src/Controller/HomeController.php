@@ -9,10 +9,11 @@ use App\Entity\Score;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-
+    #[Route("/",name:"homepage")]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $games = $entityManager->getRepository(Game::class)->findAll();
